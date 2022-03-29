@@ -1,11 +1,19 @@
 import { useState, useRef, useEffect } from "react"
+
 import { Link, useLocation } from 'react-router-dom'
+
 
 function EditLocation(props) {
   const location = useLocation()
-	const [formData, setFormData] = useState(location.state.location)
   const [validForm, setValidForm] = useState(true)
   const formElement = useRef()
+  const [formData, setFormData] = useState({
+    //location.state.locationId,
+    name: '',
+    description: '',
+    entryPoints: '',
+    rating: ''
+  })
   
 
 
@@ -20,11 +28,11 @@ function EditLocation(props) {
   const handleSubmit = evt => {
 		evt.preventDefault()
 		const locationFormData = new FormData()
-    locationFormData.append('name', formData.name)
-		locationFormData.append('description', formData.description)
-		locationFormData.append('entryPoints', formData.entryPoints)
-		locationFormData.append('rating', formData.rating)
-    locationFormData.append('_id', formData._id) 
+    // locationFormData.append('name', formData.name)
+		// locationFormData.append('description', formData.description)
+		// locationFormData.append('entryPoints', formData.entryPoints)
+		// locationFormData.append('rating', formData.rating)
+    // locationFormData.append('_id', formData._id) 
 		props.handleUpdateLocation(locationFormData)
 	}
 
