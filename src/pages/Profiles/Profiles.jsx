@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import * as profileService from '../../services/profileService'
+import styles from './Profiles.module.css'
 
 const Profiles = () => {
   const [profiles, setProfiles] = useState([])
@@ -11,10 +12,10 @@ const Profiles = () => {
 
   return (
     <>
-      <body>
+      <body className={styles.container}>
         {profiles.length ? 
           <>
-          <h2>Find a swim buddy!</h2>
+          <h2>SWIM BUDDIES</h2>
             <div className="card-group">
               {profiles.map(profile=>
                   <div key={profile._id} className="card" style={{ width: '18rem', height: '18rem' }}>
