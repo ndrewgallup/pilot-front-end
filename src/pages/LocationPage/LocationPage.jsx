@@ -33,8 +33,7 @@ const LocationDetails = (props) => {
             <img 
               src={locationDetails.pictures}
               alt='the view'
-              className='location-pic'
-              style={{height: "300px", width: "300px"}}
+              className='location-pic'            
             />
             <div>
               <p>{locationDetails.name}</p>

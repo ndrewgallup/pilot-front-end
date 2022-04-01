@@ -1,5 +1,6 @@
 .details {
   display: flex;
+  gap: 2rem;
   width: 80%;
   margin: 9rem auto 2rem;
 }
@@ -8,7 +9,9 @@ img {
   border: 5px grey solid;
 }
 
-
+.location-pic {
+  max-width: 45vw !important;
+}
 
 
 
