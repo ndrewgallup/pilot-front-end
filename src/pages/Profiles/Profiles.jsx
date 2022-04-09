@@ -26,10 +26,9 @@ const Profiles = () => {
             {profiles.length ? 
               <>
                   {profiles.map(profile=>
-                  <div>
-                      <div key={profile._id} className="card" style={{ width: '18rem', height: '29rem' }}>
-                        {profile.photo?
-                          <>
+                  <div key={profile._id}>
+                      <div className="card" style={{ width: '18rem', height: '29rem' }}>
+                        {profile.photo &&
                           <div style={{height: '14rem' }}>
                             <img 
                               src={profile.photo}
@@ -37,56 +36,22 @@ const Profiles = () => {
                               className='card-img-top profile-pic pic'
                               height
                               ></img>
-                            </div>
+                            </div>}
                               <div className="card-body">
                               <h5 className="card-title">{profile.name}, {profile.location}</h5>
-                              {profile.skillLevel?
-                              <>
-                                <p className="card-text">{levels[profile.skillLevel]} swimmer</p>
-                              </>
-                                : <p></p>
+                              {profile.skillLevel && 
+                                <p className="card-text">{levels[profile.skillLevel-1]} swimmer</p>
                               }
-                              {profile.pilot?
+                              {profile.pilot[0].canPilot &&
                                 <p className="card-text">pilot</p>
-                                : <p></p>
                               }
-                              {profile.kayakSUP?
+                              {profile.pilot[0].hasKayakSUP &&
                                 <p className="card-text">🛶</p>
-                                : <p></p>
                               }
-                              {profile.contact?
+                              {profile.contact &&
                                 <p className="card-text">{profile.contact}</p>
-                                : <p></p>
                               }
-                            </div>
-                              
-                          </>
-                          :
-                          <>
-                            <div className="card-body">
-                              <h5 className="card-title">{profile.name}, {profile.location}</h5>
-                              {profile.skillLevel?
-                              <>
-                                <p className="card-text">{levels[profile.skillLevel]} swimmer</p>
-                                {/* <HoverRating></HoverRating> */}
-                              </>
-                                : <p></p>
-                              }
-                              {profile.pilot?
-                                <p className="card-text">pilot</p>
-                                : <p></p>
-                              }
-                              {profile.kayakSUP?
-                                <p className="card-text">🛶</p>
-                                : <p></p>
-                              }
-                              {profile.contact?
-                                <p className="card-text">{profile.contact}</p>
-                                : <p></p>
-                              }
-                            </div>
-                          </>
-                        }  
+                            </div>    
                       </div>
                   </div>
                   )}

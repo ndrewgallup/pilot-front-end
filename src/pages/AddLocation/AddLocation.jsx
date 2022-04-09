@@ -1,11 +1,8 @@
-
 import { useState, useRef, useEffect } from "react"
-import { getLocation, handleApiSubmit } from '../../services/locations'
 import style from './AddLocation.module.css'
 
 function AddLocation(props) {
   const formElement = useRef()
-	const [locationData, setLocationData] = useState([])
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
 		name: '',
@@ -21,38 +18,22 @@ function AddLocation(props) {
 
 
   const handleChange = evt => {
-  setFormData({ ...formData, [evt.target.name]: evt.target.value })
+  	setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
 
 	const handleChangePhoto = (evt) => {
 		setFormData({...formData, pictures: evt.target.files[0]})
 	}
 
-  const handleSubmit = evt => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault()
 		const locationFormData = new FormData()
-		locationFormData.append('pictures', formData.pictures)
+		await locationFormData.append('pictures', formData.pictures)
 		locationFormData.append('name', formData.name)
 		locationFormData.append('description', formData.description)
 		locationFormData.append('entryPoints', formData.entryPoints)
 		locationFormData.append('rating', formData.rating)
 		props.handleAddLocation(locationFormData)
-	
-
-		getLocation(formData.name)
-		.then(locationData => {
-			console.log(locationData)
-		})
-    // props.handleAddLocation(formData)
-  }
-
-	const handleApiSubmit = async evt => {
-    evt.preventDefault()
-    try {
-      setFormData(formData.name)
-    } catch (err) {
-      console.log(err)
-    }
   }
 
 	return (
@@ -73,7 +54,6 @@ function AddLocation(props) {
 						required
             value={formData.name}
             onChange={handleChange}
-						onSubmit={handleApiSubmit}
 					/>
 				</div><br />
 				<div className="form-group mb-3">

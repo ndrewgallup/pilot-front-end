@@ -18,8 +18,9 @@ const SignupForm = props => {
     pilot: false,
     kayakSUP: false,
     photo: '',
-
   })
+
+  useEffect(()=>{console.log('formdata', formData)}, [formData])
 
   const handleChange = e => {
     props.updateMessage('')
@@ -41,7 +42,6 @@ const SignupForm = props => {
     })
   }
 
-  useEffect(()=>{console.log('formdata', formData)}, [formData])
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -139,8 +139,8 @@ const SignupForm = props => {
         />
       </div> 
       <div className={styles.inputContainer}>
-        <label htmlFor="skillLevel" className= {styles.label, styles.skill} id="skill">Skill Level</label>
-        <HoverRating skillLevel = {{skillLevel}}></HoverRating>
+        <label htmlFor="skillLevel" id="skill">Skill Level</label>
+        <HoverRating handleChange = {handleChange} />
       </div>
       <div className={styles.inputContainer}>
           <label htmlFor="skillLevel" className={styles.label}>Contact Info</label>
@@ -148,11 +148,10 @@ const SignupForm = props => {
           type="text"
           autoComplete="off"
           placeholder="your email"
-          id="location"
+          id="contact"
           value={contact}
           name="contact"
           onChange={handleChange}
-
         />
       </div>
       <div>

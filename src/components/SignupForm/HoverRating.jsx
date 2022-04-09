@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 import Star from '@mui/icons-material/Star';
@@ -11,9 +11,13 @@ const labels = {
   5: 'Pro',
 };
 
-export default function HoverRating() {
-  const [value, setValue] = React.useState();
-  const [hover, setHover] = React.useState(2);
+export default function HoverRating({handleChange}) {
+  const [value, setValue] = useState(0);
+  const [hover, setHover] = useState(-1);
+
+useEffect(()=>{
+  handleChange({target: {name: 'skillLevel', value}})
+}, [value])
 
   return (
     <Box
@@ -24,9 +28,10 @@ export default function HoverRating() {
       }}
     >
     <Rating
-      name="hover-feedback"
+      name="skillLevel"
       value={value}
       precision={1}
+      size='large'
       onChange={(event, newValue) => {
         setValue(newValue);
       }}

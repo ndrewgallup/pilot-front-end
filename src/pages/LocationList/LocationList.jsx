@@ -3,16 +3,15 @@ import { Link } from "react-router-dom"
 import { getLocation } from '../../services/locations'
 
 function LocationList(props) {
-const [binaryImage, setBinaryImage] = useState('')
+  const [binaryImage, setBinaryImage] = useState('')
 
-    useEffect(() => {
-    return getLocation('Lake Michigan')
-    .then(res => {
-      const binary = btoa(String.fromCharCode(...new Uint8Array(res)))
-    console.log(binary)
-    setBinaryImage(binary)
-    })
-}, [])
+  useEffect(() => {
+        return getLocation('Lake Michigan')
+          .then(res => {
+            const binary = btoa(String.fromCharCode(...new Uint8Array(res)))
+          setBinaryImage(binary)
+          })
+  }, [])
 
   return (
     <>

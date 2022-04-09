@@ -1,0 +1,20 @@
+p {
+  margin-left: 1rem; 
+}
+
+.input {
+  margin-left: 1rem !important;
+  width: 50vw; 
+}
+
+.comment {
+  display: flex; 
+}
+
+.btn {
+  margin: 1rem !important;
+}
+
+.label {
+  margin-left: 5rem !important; 
+}

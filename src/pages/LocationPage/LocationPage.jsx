@@ -1,40 +1,36 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import style from './LocationPage.module.css'
+import * as locationService from '../../services/locations'
+import CommentCard from "../../components/CommentCard/CommentCard";
+import CommentForm from "../../components/CommentForm/CommentForm";
 
 const LocationDetails = (props) => {
-  const [locationDetails, setLocationDetails] = useState({})
   let location = useLocation()
-  const [commentData, setCommentData] = useState({
-    content: '',
-  })
-  
+  const [locationDetails, setLocationDetails] = useState(null)
+
   useEffect(() => {
-    // getAll(location.state.location.name)
-    setLocationDetails(location.state.location)
-  }, [])
+    (async() => {
+      const currLocation = await locationService.show(location.state.location._id)
+      setLocationDetails(currLocation)
+    })()
+  }, [props.locations])
 
-  const handleChange = evt => {
-  setCommentData({ ...commentData, [evt.target.name]: evt.target.value })
-  }
-
-  const handleSubmit = async evt => {
+  const handleSubmit = async (evt, commentData) => {
     evt.preventDefault()
-    const updatedLocation= await props.handleAddComment(locationDetails._id, commentData)
-    setLocationDetails(updatedLocation)
+    props.handleAddComment(locationDetails._id, commentData)
   }
 
-
-  return ( 
+  return (
+    locationDetails &&
     <>
         <div className = "parent-card-group">
-            
           <div className={style.details}>
             <img 
               src={locationDetails.pictures}
               alt='the view'
               className='location-pic'
-              style={{'max-width': "60%"}}
+              style={{'maxWidth': "60%"}}
             />
             <div>
               <h2>{locationDetails.name}</h2>
@@ -43,74 +39,40 @@ const LocationDetails = (props) => {
               <p>Rating: {locationDetails.rating ? locationDetails.rating : 'no ratings available yet'}</p> 
               <Link
                 to='/edit'
-                state={{location}}
+                state={{ location }}
               >
                 <button className={style.btn}>Edit</button> 
               </Link>
-              <Link to='/locations'><button className={style.btn}>Back to All Locations</button></Link>
+              <Link to='/locations'>
+                <button className={style.btn}>
+                  Back to All Locations
+                </button>
+              </Link>
             </div>
           </div>
         </div>
-          <form onSubmit={handleSubmit}>
-          <div className="form-group mb-3">
-          <div className={style.comment}>
-            <label htmlFor="comment-input" className={style.label}>
-              Comments
-            </label>
-            <input 
-              type="text"
-              className={style.input}
-              id="comment-input"
-              name="content"
-              value={commentData
-              .content}
-              onChange={handleChange}
-            />
-            <button className = {style.btn}
-              type="submit"
-            >
-              Add Comment
-            </button>
-          </div>
-          </div>
-          <br></br>
-          </form>
-      {locationDetails?.comments?.length > 0 ?
+        <CommentForm handleSubmit={handleSubmit} />
+        {locationDetails.comments?.length > 0 &&
           <table>
-      <thead>
-        <tr>
-          <th>Comment</th>
-          <th>Posted By</th>
-        </tr>
-    </thead>
-    <tbody>
-      
-          {locationDetails.comments.map((comment) => (
-          <tr key={comment._id}>
-            <td>{comment.content}</td>
-            <td>{comment.owner.name}</td>
-            {props.user.profile === comment.owner?._id ?
-              <td><button className="cmnt-btn"
-                onClick={()=>
-                  props.handleDeleteComment(locationDetails, comment._id)}
-                user={props.user}
-              >
-                X
-              </button></td>
-                
-                  :
-              <td></td>
-            }
-          </tr> 
-          ))}
-        
-    </tbody>
-    </table>
-    :
-    <>
-    <p></p>
-    </>
-    }
+            <thead>
+              <tr>
+                <th>Comment</th>
+                <th>Posted By</th>
+              </tr>
+            </thead>
+            <tbody>
+                  {locationDetails.comments.map((comment) => (
+                    <CommentCard
+                      key={comment._id}
+                      comment={comment}
+                      handleDeleteComment={props.handleDeleteComment}
+                      locationDetails={locationDetails}
+                      user={props.user}
+                    />
+                  ))}
+            </tbody>
+          </table>
+          }
     </>
    )
 }

@@ -5,80 +5,11 @@
   margin: 9rem auto 2rem;
 }
 
-.btn {
-  margin: 1rem !important;
-}
-
 p {
   margin-left: 1rem; 
 }
 
-.label {
-  margin-left: 5rem !important; 
+.btn {
+  margin: 1rem !important;
 }
 
-.input {
-  margin-left: 1rem !important;
-  width: 50vw; 
-}
-
-.comment {
-  display: flex; 
-
-}
-
-/* div {
-  border: 1px solid grey;
-}
-
-.parent-card-group {
-  display: grid  !important;
-  grid-template-rows: 300px 300px;
-}
-
-h3 {
-  text-align: center;
-} */
-
-/* body {
-  display: grid;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 5%;
-  font-family: var(--bs-body-font-family);
-}
-
-table {
-  margin: 2% auto;
-  text-align: center;
-}
-
-th, td {
-  font-size: 1.5em;
-}
-
-img {
-  margin: 0 auto !important;
-}
-
-
-label {
-  font-size: large;
-  text-align: center;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 30px;
-}
-
-button {
-  margin: 0 auto 2% auto !important;
-  background-color: #64a19d;
-  color: white;
-}
-
-tbody {
-  padding: 50px;
-}   */
