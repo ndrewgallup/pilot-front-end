@@ -9,7 +9,7 @@ This app was conceptualized, designed, and coded by [Vanessa Konynenbelt](https:
 
 ## Getting Started
 
-**Check out the deployed application [here](https://vac-pilot.herokuapp.com/)**
+**Check out the deployed application [here](https://main--app-pilot.netlify.app/)**
 
 ![](public/Pilot.png)
 
