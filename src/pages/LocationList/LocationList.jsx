@@ -43,7 +43,7 @@ function LocationList(props) {
                     <div className="card-body">
                       <h5 className="card-title">{location.name}</h5>
                       <p className="card-text">{location.description}</p>
-                      <img src={`data:image/jpeg;base64,${binaryImage}`} />
+                      <img alt="the view" src={`data:image/jpeg;base64,${binaryImage}`} />
                     
                     </div>
                   </>
