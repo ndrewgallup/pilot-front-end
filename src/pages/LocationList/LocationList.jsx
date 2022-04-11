@@ -30,7 +30,7 @@ function LocationList(props) {
                 <div className="card" style={{ width: '18rem', height: '25rem' }}>
                   {location.pictures?
                   <>
-                   <div style={{height: '14rem' }}>
+                    <div style={{height: '14rem' }}>
                     <img className="card-img-top pic" src={location.pictures} alt="..."></img>
                     </div>
                     <div className="card-body">
